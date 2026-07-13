@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CryptoX Nova - Withdraw</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+
+<h2>
+CryptoX Nova
+</h2>
+
+
+
+<ul class="sidebar-menu">
+
+
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li>
+
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Wallet
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li>
+
+<a href="exchange-wallet.html">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<span>
+Exchange Wallet
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li>
+
+<a href="trade.html">
+
+<i class="fa-solid fa-right-left"></i>
+
+<span>
+Trade
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li>
+
+<a href="deposit.html">
+
+<i class="fa-solid fa-circle-plus"></i>
+
+<span>
+Deposit
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li class="active">
+
+<a href="withdraw.html">
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+<span>
+Withdraw
+</span>
+
+</a>
+
+</li>
+
+
+
+
+
+<li>
+
+<a href="history.html">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>
+History
+</span>
+
+</a>
+
+</li>
+
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+
+
+
+
+<section class="nova-header">
+
+
+<div>
+
+
+<h2>
+Withdraw Assets
+</h2>
+
+
+<p>
+Withdraw your crypto funds securely.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="header-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Wallet Active
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- WITHDRAW CARD -->
+
+
+<section class="action-card">
+
+
+<div class="action-header">
+
+
+<h2>
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+Withdraw Funds
+
+</h2>
+
+
+<p>
+Select asset and enter withdrawal details.
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="action-input">
+
+
+<label>
+Select Coin
+</label>
+
+
+<select id="coin">
+
+
+<option value="USDT">
+USDT
+</option>
+
+
+<option value="BTC">
+BTC
+</option>
+
+
+<option value="ETH">
+ETH
+</option>
+
+
+<option value="SOL">
+SOL
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="action-input">
+
+
+<label>
+Withdraw Amount
+</label>
+
+
+<input
+
+type="number"
+
+id="amount"
+
+placeholder="Enter amount"
+
+>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="action-input">
+
+
+<label>
+Wallet Address
+</label>
+
+
+<input
+
+type="text"
+
+id="address"
+
+placeholder="Enter wallet address"
+
+>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="balance-text">
+
+
+Available Balance:
+
+<span id="balance">
+
+0.00
+
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+
+<button
+
+class="primary-action-btn"
+
+onclick="submitWithdraw()"
+
+>
+
+
+<i class="fa-solid fa-paper-plane"></i>
+
+
+Submit Withdrawal Request
+
+
+</button>
+
+
+
+
+
+
+
+<p id="message"></p>
+
+
+
+
+</section>
+
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<script src="js/withdraw.js"></script>
+
+
+</body>
+
+</html>

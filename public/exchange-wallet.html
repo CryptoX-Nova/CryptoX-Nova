@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Exchange Wallet | CryptoX Nova</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet" href="css/exchange-wallet.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>
+CryptoX Nova
+</h2>
+
+
+<ul class="sidebar-menu">
+
+
+<li>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Dashboard
+</span>
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Wallet
+</span>
+
+</a>
+
+</li>
+
+
+
+<li class="active">
+
+<a href="exchange-wallet.html">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<span>
+Exchange Wallet
+</span>
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="trade.html">
+
+<i class="fa-solid fa-right-left"></i>
+
+<span>
+Trade
+</span>
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="history.html">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>
+History
+</span>
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="withdraw.html">
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+<span>
+Withdraw
+</span>
+
+</a>
+
+</li>
+
+
+
+<li onclick="logout()">
+
+<a href="#">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+
+
+
+<!-- HEADER -->
+
+<section class="nova-header">
+
+
+<div>
+
+<h2>
+Exchange Wallet
+</h2>
+
+
+<p>
+Exchange your crypto assets instantly.
+</p>
+
+
+</div>
+
+
+
+<div class="header-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Wallet Active
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- BALANCE -->
+
+<section class="portfolio-panel">
+
+
+<div class="portfolio-main">
+
+
+<div class="portfolio-title">
+
+
+<p>
+Available Exchange Balance
+</p>
+
+
+<h1 id="exchangeBalance">
+0.00 USDT
+</h1>
+
+
+<div class="wallet-profit">
+
+<i class="fa-solid fa-building-columns"></i>
+
+<span>
+Ready for Exchange
+</span>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- EXCHANGE BOX -->
+
+
+<section class="card exchange-box">
+
+
+<div class="exchange-header">
+
+<h3>
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+ Convert Assets
+</h3>
+
+<p>
+Swap your crypto assets instantly
+</p>
+
+</div>
+
+
+
+
+
+<div class="exchange-card">
+
+
+
+<div class="swap-panel">
+
+
+<div class="coin-box">
+
+
+<label>
+You Pay
+</label>
+
+
+<div class="coin-input">
+
+
+<input 
+type="number"
+id="exchangeAmount"
+placeholder="0.00">
+
+
+
+<select id="fromCoin">
+
+<option>
+USDT
+</option>
+
+<option>
+BTC
+</option>
+
+<option>
+ETH
+</option>
+
+<option>
+SOL
+</option>
+
+
+</select>
+
+
+</div>
+
+
+<div class="balance-info">
+
+Balance:
+<span id="payBalance">
+0.00 USDT
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<button class="swap-button">
+
+<i class="fa-solid fa-arrow-down-up-across-line"></i>
+
+</button>
+
+
+
+
+
+
+<div class="coin-box">
+
+
+<label>
+You Receive
+</label>
+
+
+<div class="coin-input">
+
+
+<input 
+id="receiveAmount"
+placeholder="0.00"
+readonly>
+
+
+
+
+<select id="toCoin">
+
+
+<option>
+BTC
+</option>
+
+<option>
+USDT
+</option>
+
+<option>
+ETH
+</option>
+
+<option>
+SOL
+</option>
+
+
+</select>
+
+
+
+</div>
+
+
+
+<div class="balance-info">
+
+Rate:
+<span id="exchangeRate">
+1 USDT = Market Price
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<button class="exchange-btn" id="confirmExchange">
+
+<i class="fa-solid fa-bolt"></i>
+
+
+Confirm Exchange
+
+
+</button>
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ASSETS -->
+
+
+<section class="bottom-grid">
+
+
+<div class="asset-section card">
+
+
+<h3>
+Your Assets
+</h3>
+
+
+<div class="wallet-grid">
+
+
+<p>
+USDT:
+<span id="usdtBalance">
+0.00
+</span>
+</p>
+
+
+<p>
+BTC:
+<span id="btcBalance">
+0.00000000
+</span>
+</p>
+
+
+<p>
+ETH:
+<span id="ethBalance">
+0.00000000
+</span>
+</p>
+
+
+<p>
+SOL:
+<span id="solBalance">
+0.00000000
+</span>
+</p>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="activity-section card">
+
+
+<h3>
+Recent Exchange Activity
+</h3>
+
+
+
+<div class="activity-item">
+
+
+<i class="fa-solid fa-clock"></i>
+
+
+<span id="transactionList">
+
+No transactions yet.
+
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+<script src="js/logout.js"></script>
+
+<script src="js/exchange-wallet.js"></script>
+
+
+</body>
+
+</html>

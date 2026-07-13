@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CryptoX Nova Admin Panel</title>
+
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+</head>
+
+
+<body>
+
+
+<!-- ========================= -->
+<!-- SIDEBAR -->
+<!-- ========================= -->
+
+
+<div class="sidebar">
+
+
+<h2>
+CryptoX Nova
+</h2>
+
+
+<ul class="sidebar-menu">
+
+
+<li class="active">
+
+<a href="#dashboard">
+
+<i class="fa-solid fa-gauge"></i>
+
+Dashboard
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="#users">
+
+<i class="fa-solid fa-users"></i>
+
+Users
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="#wallet">
+
+<i class="fa-solid fa-wallet"></i>
+
+Wallet
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="#deposits">
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+Deposits
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="#market">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Market
+
+</a>
+
+</li>
+
+
+
+<li onclick="logout()">
+
+<a href="#">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Logout
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+<!-- ========================= -->
+<!-- MAIN -->
+<!-- ========================= -->
+
+
+<div class="main">
+
+
+
+
+
+<!-- ========================= -->
+<!-- HERO -->
+<!-- ========================= -->
+
+
+<section class="admin-hero" id="dashboard">
+
+
+
+<div>
+
+
+<small>
+Administrator Panel
+</small>
+
+
+<h1>
+CryptoX Nova Control Center
+</h1>
+
+
+<p>
+Manage users, wallets, deposits and market operations.
+</p>
+
+
+
+<div class="admin-mini-stats">
+
+
+<div>
+
+<i class="fa-solid fa-users"></i>
+
+<span>
+Users
+</span>
+
+<strong id="heroUsers">
+0
+</strong>
+
+
+</div>
+
+
+
+
+<div>
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+Trades
+</span>
+
+<strong id="heroTrades">
+0
+</strong>
+
+
+</div>
+
+
+
+
+<div>
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Balance
+</span>
+
+<strong id="heroBalance">
+$0
+</strong>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="admin-status">
+
+
+<i class="fa-solid fa-circle"></i>
+
+System Online
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- STATS -->
+<!-- ========================= -->
+
+
+<section class="admin-stats">
+
+
+<div class="admin-card stat-users">
+
+<i class="fa-solid fa-users stat-icon"></i>
+
+<small>
+Total Users
+</small>
+
+<h2 id="totalUsers">
+0
+</h2>
+
+<span>
+Registered accounts
+</span>
+
+</div>
+
+
+
+
+<div class="admin-card stat-deposit">
+
+<i class="fa-solid fa-money-bill-transfer stat-icon"></i>
+
+<small>
+Total Deposits
+</small>
+
+<h2 id="totalDeposits">
+$0
+</h2>
+
+<span>
+Platform deposits
+</span>
+
+</div>
+
+
+
+
+<div class="admin-card stat-balance">
+
+<i class="fa-solid fa-wallet stat-icon"></i>
+
+<small>
+Platform Balance
+</small>
+
+<h2 id="platformBalance">
+$0
+</h2>
+
+<span>
+Total liquidity
+</span>
+
+</div>
+
+
+
+
+<div class="admin-card stat-trades">
+
+<i class="fa-solid fa-chart-line stat-icon"></i>
+
+<small>
+Total Trades
+</small>
+
+<h2 id="totalTrades">
+0
+</h2>
+
+<span>
+Executed trades
+</span>
+
+</div>
+
+
+
+</section>
+
+<!-- ========================= -->
+<!-- ANALYTICS -->
+<!-- ========================= -->
+
+<section class="admin-analytics">
+
+
+<div class="card chart-card">
+
+
+<div class="section-title">
+
+<h2>
+<i class="fa-solid fa-chart-line"></i>
+Platform Analytics
+</h2>
+
+<p>
+CryptoX Nova system overview
+</p>
+
+</div>
+
+
+
+<canvas id="adminChart"></canvas>
+
+
+</div>
+
+
+
+
+<div class="card activity-card">
+
+
+<div class="section-title">
+
+<h2>
+
+<i class="fa-solid fa-clock"></i>
+
+Recent Activity
+
+</h2>
+
+<p>
+Latest platform actions
+</p>
+
+</div>
+
+
+
+
+<div class="activity-list">
+
+
+<div class="activity-item">
+
+<i class="fa-solid fa-user-plus"></i>
+
+<span>
+New user registered
+</span>
+
+</div>
+
+
+
+<div class="activity-item">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Wallet deposit completed
+</span>
+
+</div>
+
+
+
+<div class="activity-item">
+
+<i class="fa-solid fa-arrow-right-arrow-left"></i>
+
+<span>
+Trade executed
+</span>
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</section>
+
+<!-- ========================= -->
+<!-- USERS MANAGEMENT -->
+<!-- ========================= -->
+
+<section class="card" id="users">
+
+
+<div class="section-title">
+
+<h2>
+<i class="fa-solid fa-users"></i>
+Users Management
+</h2>
+
+<p>
+Manage registered CryptoX Nova users
+</p>
+
+
+</div>
+
+
+
+<div class="table-responsive">
+
+
+<table class="table">
+
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>User</th>
+
+<th>Email</th>
+
+<th>Role</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+
+
+<tbody id="usersTable">
+
+
+<tr>
+
+<td colspan="5">
+Loading users...
+</td>
+
+</tr>
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- WALLET MANAGEMENT -->
+<!-- ========================= -->
+
+
+<section class="card deposit-panel" id="wallet">
+
+
+<h2>
+
+<i class="fa-solid fa-wallet"></i>
+
+Wallet Management
+
+</h2>
+
+
+
+<p>
+
+Add balance to user wallet
+
+</p>
+
+
+
+
+
+<label>
+
+Select User
+
+</label>
+
+
+
+<select id="userSelect">
+
+
+<option>
+
+Loading users...
+
+</option>
+
+
+</select>
+
+
+
+
+
+
+<label>
+
+Select Coin
+
+</label>
+
+
+
+<select id="coinSelect">
+
+
+<option value="USDT">
+USDT
+</option>
+
+
+<option value="BTC">
+BTC
+</option>
+
+
+<option value="ETH">
+ETH
+</option>
+
+
+<option value="SOL">
+SOL
+</option>
+
+
+</select>
+
+
+
+
+
+
+<label>
+
+Amount
+
+</label>
+
+
+
+<input
+
+type="number"
+
+id="amount"
+
+placeholder="Enter amount"
+
+>
+
+
+
+
+
+
+<button id="depositBtn">
+
+<i class="fa-solid fa-plus"></i>
+
+Add Balance
+
+</button>
+
+
+
+
+
+<p id="adminMessage"></p>
+
+
+
+</section>
+
+<!-- ========================= -->
+<!-- DEPOSIT HISTORY -->
+<!-- ========================= -->
+
+
+<section class="card" id="deposits">
+
+
+<div class="section-title">
+
+
+<h2>
+
+<i class="fa-solid fa-money-bill-transfer"></i>
+
+Deposit History
+
+</h2>
+
+
+<p>
+
+Latest admin wallet deposits
+
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="table-responsive">
+
+
+
+<table class="table">
+
+
+
+<thead>
+
+
+<tr>
+
+<th>User</th>
+
+<th>Coin</th>
+
+<th>Amount</th>
+
+<th>Date</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody id="depositTable">
+
+
+<tr>
+
+
+<td colspan="4">
+
+Loading deposits...
+
+</td>
+
+
+</tr>
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- MARKET MANAGEMENT -->
+<!-- ========================= -->
+
+
+<section class="card" id="market">
+
+
+
+<div class="section-title">
+
+
+<h2>
+
+<i class="fa-solid fa-chart-line"></i>
+
+Market Management
+
+</h2>
+
+
+<p>
+
+Update cryptocurrency prices
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="market-grid">
+
+
+
+
+
+<div class="market-card">
+
+
+<h3>
+
+Bitcoin (BTC)
+
+</h3>
+
+
+<p>
+
+Current Price
+
+</p>
+
+
+<h2 id="btcCurrentPrice">
+
+$65,000
+
+</h2>
+
+
+
+<input
+
+type="number"
+
+id="btcPrice"
+
+placeholder="New BTC Price"
+
+>
+
+
+
+
+<button id="updateBTC">
+
+Update BTC
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="market-card">
+
+
+<h3>
+
+Ethereum (ETH)
+
+</h3>
+
+
+<p>
+
+Current Price
+
+</p>
+
+
+<h2 id="ethCurrentPrice">
+
+$3,500
+
+</h2>
+
+
+
+<input
+
+type="number"
+
+id="ethPrice"
+
+placeholder="New ETH Price"
+
+>
+
+
+
+
+<button id="updateETH">
+
+Update ETH
+
+</button>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="market-card">
+
+
+<h3>
+
+Solana (SOL)
+
+</h3>
+
+
+<p>
+
+Current Price
+
+</p>
+
+
+<h2 id="solCurrentPrice">
+
+$150
+
+</h2>
+
+
+
+<input
+
+type="number"
+
+id="solPrice"
+
+placeholder="New SOL Price"
+
+>
+
+
+
+
+<button id="updateSOL">
+
+Update SOL
+
+</button>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- ========================= -->
+<!-- FOOTER -->
+<!-- ========================= -->
+
+
+<footer class="admin-footer">
+
+
+<p>
+
+© 2026 CryptoX Nova Admin Panel
+
+</p>
+
+
+</footer>
+
+
+
+
+
+</div>
+
+
+
+
+
+<script src="js/logout.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="js/admin.js"></script>
+
+
+
+</body>
+
+</html>

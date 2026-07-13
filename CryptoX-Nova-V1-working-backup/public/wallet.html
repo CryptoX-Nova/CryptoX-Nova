@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CryptoX Nova Wallet</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<div class="sidebar">
+
+
+<h2>CryptoX Nova</h2>
+
+
+<ul class="sidebar-menu">
+
+
+<li>
+<a href="dashboard.html">
+<i class="fa-solid fa-house"></i>
+Dashboard
+</a>
+</li>
+
+
+<li class="active">
+<a href="wallet.html">
+<i class="fa-solid fa-wallet"></i>
+Wallet
+</a>
+</li>
+
+
+<li>
+<a href="market.html">
+<i class="fa-solid fa-chart-line"></i>
+Market
+</a>
+</li>
+
+
+<li>
+<a href="trade.html">
+<i class="fa-solid fa-right-left"></i>
+Trade
+</a>
+</li>
+
+
+<li>
+<a href="history.html">
+<i class="fa-solid fa-clock"></i>
+History
+</a>
+</li>
+
+
+<li onclick="logout()">
+
+<a href="#">
+<i class="fa-solid fa-right-from-bracket"></i>
+Logout
+</a>
+
+</li>
+
+
+</ul>
+
+</div>
+
+
+
+
+
+<div class="main">
+
+
+
+
+
+<!-- WALLET HERO -->
+
+
+<section class="wallet-hero">
+
+
+<div class="wallet-balance">
+
+
+<p>
+Total Portfolio Balance
+</p>
+
+<h1 id="portfolioValue">
+Loading...
+</h1>
+
+<div class="wallet-profit">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span id="profit24h">
++12.5% Today
+</span>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="wallet-actions">
+
+
+<button>
+
+<i class="fa-solid fa-plus"></i>
+
+Deposit
+
+</button>
+
+
+
+<button>
+
+<i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+Withdraw
+
+</button>
+
+
+
+<button>
+
+<i class="fa-solid fa-right-left"></i>
+
+Transfer
+
+</button>
+
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ASSET HEADER -->
+
+
+<div class="section-title">
+
+
+<h2>
+Your Assets
+</h2>
+
+
+<p>
+Track your crypto holdings and performance
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ASSET GRID -->
+
+
+<section class="wallet-grid">
+
+
+
+
+
+<div class="wallet-coin btc-wallet">
+
+
+<div class="coin-header">
+
+
+<div class="coin-logo btc-logo">
+
+₿
+
+</div>
+
+
+<div>
+
+<h3>
+Bitcoin
+</h3>
+
+
+<small>
+BTC
+</small>
+
+</div>
+
+
+</div>
+
+
+
+
+<h1 id="btcBalance">
+Loading...
+</h1>
+
+<p id="btcPrice">
+BTC • Loading...
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="wallet-coin eth-wallet">
+
+
+<div class="coin-header">
+
+
+<div class="coin-logo eth-logo">
+
+Ξ
+
+</div>
+
+
+<div>
+
+<h3>
+Ethereum
+</h3>
+
+
+<small>
+ETH
+</small>
+
+</div>
+
+
+</div>
+
+
+
+
+<h1 id="ethBalance">
+Loading...
+</h1>
+
+<p id="ethPrice">
+ETH • Loading...
+</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="wallet-coin sol-wallet">
+
+
+<div class="coin-header">
+
+
+<div class="coin-logo sol-logo">
+
+◎
+
+</div>
+
+
+<div>
+
+<h3>
+Solana
+</h3>
+
+
+<small>
+SOL
+</small>
+
+</div>
+
+
+</div>
+
+
+
+
+<h1 id="solBalance">
+Loading...
+</h1>
+
+<p id="solPrice">
+SOL • Loading...
+</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="wallet-coin usdt-wallet">
+
+
+<div class="coin-header">
+
+
+<div class="coin-logo usdt-logo">
+
+$
+
+</div>
+
+
+<div>
+
+<h3>
+Tether
+</h3>
+
+
+<small>
+USDT
+</small>
+
+</div>
+
+
+</div>
+
+
+
+
+<h1 id="usdtBalance">
+Loading...
+</h1>
+
+<p id="usdtPrice">
+USDT • $1.00
+</p>
+
+
+
+</div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- WALLET ACTIVITY -->
+
+
+<section class="wallet-activity">
+
+
+<h2>
+Recent Activity
+</h2>
+
+
+
+<div class="activity-row">
+
+<i class="fa-solid fa-clock"></i>
+
+<p id="recentActivity">
+No recent trades yet.
+</p>
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="mobile-nav">
+
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+<span>Home</span>
+
+</a>
+
+
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+<span>Wallet</span>
+
+</a>
+
+
+<a href="market.html">
+
+<i class="fa-solid fa-chart-line"></i>
+<span>Market</span>
+
+</a>
+
+
+<a href="trade.html">
+
+<i class="fa-solid fa-right-left"></i>
+<span>Trade</span>
+
+</a>
+
+
+<a href="history.html">
+
+<i class="fa-solid fa-clock"></i>
+<span>History</span>
+
+</a>
+
+
+</div>
+
+
+
+
+
+<script src="js/logout.js"></script>
+<script src="js/wallet.js"></script>
+
+
+</body>
+
+</html>

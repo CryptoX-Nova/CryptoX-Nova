@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CryptoX Nova Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+
+<h2>
+CryptoX Nova
+</h2>
+
+
+<ul class="sidebar-menu">
+
+
+<li class="active">
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Dashboard
+</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Wallet
+</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="market.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+Market
+</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="trade.html">
+
+<i class="fa-solid fa-right-left"></i>
+
+<span>
+Trade
+</span>
+
+</a>
+</li>
+
+
+<li>
+<a href="history.html">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>
+History
+</span>
+
+</a>
+</li>
+
+
+<li onclick="logout()">
+
+<a href="#">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+<span>
+Logout
+</span>
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+<!-- MAIN -->
+
+<div class="main">
+
+
+
+
+
+<!-- HEADER -->
+
+
+<section class="nova-header">
+
+
+<div>
+
+<h2 id="welcome">
+Welcome
+</h2>
+
+
+<p>
+Monitor your crypto portfolio and market trends
+</p>
+
+
+</div>
+
+
+
+<div class="header-status">
+
+<i class="fa-solid fa-circle"></i>
+
+Market Live
+
+</div>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- PORTFOLIO SUMMARY -->
+
+<section class="portfolio-panel">
+
+
+<div class="portfolio-main">
+
+
+<div class="portfolio-title">
+
+<p>
+Total Portfolio Balance
+</p>
+
+
+<h1 id="portfolio">
+$0.00
+</h1>
+
+
+<div class="wallet-profit">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
++12.5% Today
+</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="stat-box">
+
+
+<small>
+24h Profit
+</small>
+
+
+<h2 class="profit">
++$2,450.00
+</h2>
+
+
+</div>
+
+
+
+
+
+<div class="stat-box">
+
+
+<small>
+Performance
+</small>
+
+
+<h2>
++12.5%
+</h2>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+<!-- MARKET ASSETS -->
+
+
+<section class="market-strip">
+
+
+
+<div class="market-box">
+
+
+<div class="coin-title">
+
+<span>
+₿
+</span>
+
+
+<small>
+Bitcoin
+</small>
+
+
+</div>
+
+
+<h3 id="btcPrice">
+$0
+</h3>
+
+
+</div>
+
+
+
+
+
+
+<div class="market-box">
+
+
+<div class="coin-title">
+
+
+<span>
+Ξ
+</span>
+
+
+<small>
+Ethereum
+</small>
+
+
+</div>
+
+
+<h3 id="ethPrice">
+$0
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="market-box">
+
+
+<div class="coin-title">
+
+
+<span>
+◎
+</span>
+
+
+<small>
+Solana
+</small>
+
+
+</div>
+
+
+<h3 id="solPrice">
+$0
+</h3>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="market-box">
+
+
+<div class="coin-title">
+
+
+<span>
+$
+</span>
+
+
+<small>
+USDT
+</small>
+
+
+</div>
+
+
+<h3 id="usdtBalance">
+$0.00
+</h3>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+<!-- LIVE MARKET CHART -->
+
+
+<section class="chart-section">
+
+
+<div class="chart-header">
+
+
+<h3>
+Live Market Chart
+</h3>
+
+
+
+<div class="chart-buttons">
+
+
+<button onclick="loadChart('BINANCE:BTCUSDT')">
+BTC
+</button>
+
+
+<button onclick="loadChart('BINANCE:ETHUSDT')">
+ETH
+</button>
+
+
+<button onclick="loadChart('BINANCE:SOLUSDT')">
+SOL
+</button>
+
+
+</div>
+
+
+
+</div>
+
+
+
+<div id="tradingview_chart"></div>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- ASSETS AND ACTIVITY -->
+
+
+<section class="bottom-grid">
+
+
+
+<div class="asset-section card">
+
+
+<h3>
+Your Assets
+</h3>
+
+
+<div id="wallet" class="wallet-grid">
+
+Loading...
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="activity-section card">
+
+
+<h3>
+Recent Activity
+</h3>
+
+
+
+<div class="activity-item">
+
+
+<i class="fa-solid fa-arrow-up"></i>
+
+
+<span>
+Trading activity will appear here
+</span>
+
+
+</div>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- MOBILE NAVIGATION -->
+
+
+<div class="mobile-nav">
+
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-house"></i>
+
+<span>
+Home
+</span>
+
+</a>
+
+
+
+<a href="wallet.html">
+
+<i class="fa-solid fa-wallet"></i>
+
+<span>
+Wallet
+</span>
+
+</a>
+
+
+
+<a href="market.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+<span>
+Market
+</span>
+
+</a>
+
+
+
+<a href="trade.html">
+
+<i class="fa-solid fa-right-left"></i>
+
+<span>
+Trade
+</span>
+
+</a>
+
+
+
+<a href="history.html">
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+<span>
+History
+</span>
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+<script src="https://s3.tradingview.com/tv.js"></script>
+
+<script src="js/chart.js"></script>
+
+<script src="js/logout.js"></script>
+
+<script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>

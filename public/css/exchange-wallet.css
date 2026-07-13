@@ -1,0 +1,618 @@
+/* ================================
+   EXCHANGE WALLET PAGE
+   CryptoX Nova Theme
+================================ */
+
+
+/* HEADER */
+
+.page-header,
+.nova-header {
+
+    margin-bottom: 25px;
+
+}
+
+
+.page-header h1,
+.nova-header h2 {
+
+    color: white;
+
+    font-size: 32px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.page-header p,
+.nova-header p {
+
+    color: #9ca3af;
+
+}
+
+
+
+
+
+/* MAIN BALANCE CARD */
+
+.exchange-main-card {
+
+    background: rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:20px;
+
+    padding:30px;
+
+    margin-bottom:25px;
+
+    backdrop-filter: blur(10px);
+
+}
+
+
+
+.balance-title h3 {
+
+    color:#a1a1aa;
+
+    font-size:16px;
+
+}
+
+
+
+#exchangeBalance {
+
+    color:white;
+
+    font-size:42px;
+
+    font-weight:700;
+
+    margin:20px 0;
+
+}
+
+
+
+.exchange-main-card p {
+
+    color:#9ca3af;
+
+}
+
+
+#exchangeUsdValue {
+
+    color:white;
+
+    font-weight:600;
+
+}
+
+
+
+
+/* BUTTONS */
+
+
+.wallet-buttons {
+
+    display:flex;
+
+    gap:15px;
+
+    margin-top:25px;
+
+}
+
+
+
+.wallet-buttons button {
+
+    border:none;
+
+    padding:14px 24px;
+
+    border-radius:12px;
+
+    color:white;
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    transition:.3s;
+
+}
+
+
+
+.wallet-buttons button:hover {
+
+    transform:translateY(-3px);
+
+}
+
+
+
+/* BUTTON COLORS */
+
+
+.deposit-btn {
+
+    background:#00c853;
+
+}
+
+
+
+.withdraw-btn {
+
+    background:#ef4444;
+
+}
+
+
+
+.transfer-btn {
+
+    background:#2563eb;
+
+}
+
+
+
+
+
+
+/* ASSETS CARD */
+
+
+.assets-card,
+.history-card {
+
+
+    background:rgba(255,255,255,0.05);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+.assets-card h2,
+.history-card h2 {
+
+    color:white;
+
+    margin-bottom:20px;
+
+}
+
+
+
+
+
+/* TABLE */
+
+
+.assets-card table {
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+
+
+.assets-card th {
+
+    color:#9ca3af;
+
+    text-align:left;
+
+    padding:15px;
+
+}
+
+
+
+.assets-card td {
+
+    color:white;
+
+    padding:18px 15px;
+
+    border-top:1px solid rgba(255,255,255,0.08);
+
+}
+
+
+
+.assets-card td:first-child {
+
+    font-weight:600;
+
+}
+
+
+
+
+
+/* TRANSACTION */
+
+
+#transactionList {
+
+    color:#9ca3af;
+
+}
+
+
+
+
+
+/* MOBILE */
+
+
+@media(max-width:768px){
+
+
+.wallet-buttons {
+
+    flex-direction:column;
+
+}
+
+
+
+.wallet-buttons button {
+
+    width:100%;
+
+}
+
+
+
+#exchangeBalance {
+
+    font-size:32px;
+
+}
+
+
+}
+
+/* ================================
+   PREMIUM EXCHANGE BOX
+================================ */
+
+
+.exchange-box {
+
+    padding:30px;
+
+}
+
+
+
+.exchange-header h3 {
+
+    color:white;
+
+    font-size:22px;
+
+    margin-bottom:5px;
+
+}
+
+
+
+.exchange-header h3 i {
+
+    margin-right:10px;
+
+    color:#00c853;
+
+}
+
+
+
+.exchange-header p {
+
+    color:#9ca3af;
+
+    margin-bottom:25px;
+
+}
+
+
+
+
+
+.exchange-card {
+
+    background:rgba(255,255,255,0.04);
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+}
+
+
+
+
+
+.swap-panel {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+}
+
+
+
+
+
+.coin-box {
+
+    flex:1;
+
+}
+
+
+
+.coin-box label {
+
+    display:block;
+
+    color:#9ca3af;
+
+    font-size:14px;
+
+    margin-bottom:10px;
+
+}
+
+
+
+
+
+.coin-input {
+
+    display:flex;
+
+    background:#111827;
+
+    border:1px solid rgba(255,255,255,.1);
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+
+
+
+
+.coin-input input {
+
+    width:100%;
+
+    padding:18px;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+
+
+
+
+.coin-input select {
+
+
+    background:#1f2937;
+
+    color:white;
+
+    border:none;
+
+    padding:0 20px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+
+
+
+
+.balance-info {
+
+
+    margin-top:10px;
+
+    color:#9ca3af;
+
+    font-size:13px;
+
+}
+
+
+
+.balance-info span {
+
+    color:white;
+
+}
+
+
+
+
+
+.swap-button {
+
+
+    width:50px;
+
+    height:50px;
+
+
+    border-radius:50%;
+
+
+    border:none;
+
+
+    background:#2563eb;
+
+
+    color:white;
+
+
+    font-size:18px;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.swap-button:hover {
+
+
+    transform:rotate(180deg);
+
+
+}
+
+
+
+
+
+
+
+.exchange-btn {
+
+
+    width:100%;
+
+
+    margin-top:30px;
+
+
+    padding:17px;
+
+
+    border:none;
+
+
+    border-radius:15px;
+
+
+    background:linear-gradient(135deg,#2563eb,#00c853);
+
+
+    color:white;
+
+
+    font-size:17px;
+
+
+    font-weight:600;
+
+
+    cursor:pointer;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.exchange-btn:hover {
+
+
+    transform:translateY(-3px);
+
+
+}
+
+
+
+
+
+
+@media(max-width:768px){
+
+
+.swap-panel{
+
+
+    flex-direction:column;
+
+
+}
+
+
+
+.swap-button{
+
+
+    transform:rotate(90deg);
+
+
+}
+
+
+}
