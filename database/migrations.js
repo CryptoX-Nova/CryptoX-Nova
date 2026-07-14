@@ -825,6 +825,166 @@ runMigration(
 );
 
 // =====================================
+// MIGRATION 008
+// ADD DEPOSIT WITHDRAWAL AUDIT FIELDS
+// =====================================
+
+runMigration(
+
+    8,
+
+    "Add deposit and withdrawal audit fields",
+
+    (done)=>{
+
+
+        const tables = [
+
+            {
+                table:"deposits",
+                columns:[
+                    "reference_id TEXT",
+                    "approved_by INTEGER"
+                ]
+            },
+
+            {
+                table:"withdrawals",
+                columns:[
+                    "reference_id TEXT",
+                    "approved_by INTEGER"
+                ]
+            }
+
+        ];
+
+
+
+        let completedTables = 0;
+
+
+
+        tables.forEach(item=>{
+
+
+            db.all(
+
+                `PRAGMA table_info(${item.table})`,
+
+                (err, columns)=>{
+
+
+                    if(err){
+
+                        console.log(err);
+                        return;
+
+                    }
+
+
+
+                    let queries = [];
+
+
+
+                    item.columns.forEach(column=>{
+
+
+                        const columnName = column.split(" ")[0];
+
+
+                        const exists = columns.some(
+                            col=>col.name === columnName
+                        );
+
+
+                        if(!exists){
+
+                            queries.push(`
+
+                            ALTER TABLE ${item.table}
+
+                            ADD COLUMN ${column}
+
+                            `);
+
+                        }
+
+
+                    });
+
+
+
+                    if(queries.length === 0){
+
+                        completedTables++;
+
+                    }
+
+
+
+                    let finished = 0;
+
+
+
+                    queries.forEach(query=>{
+
+
+                        db.run(query,(err)=>{
+
+
+                            if(err){
+
+                                console.log(
+                                    "AUDIT MIGRATION ERROR:",
+                                    err
+                                );
+
+                            }
+
+
+                            finished++;
+
+
+                            if(finished === queries.length){
+
+                                completedTables++;
+
+
+                                if(completedTables === tables.length){
+
+                                    console.log(
+                                        "Deposit and withdrawal audit fields added"
+                                    );
+
+                                    done();
+
+                                }
+
+                            }
+
+
+                        });
+
+
+                    });
+
+
+
+                }
+
+            );
+
+
+        });
+
+
+
+    }
+
+);
+
+// =====================================
 // EXPORT
 // =====================================
 
