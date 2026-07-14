@@ -423,6 +423,140 @@ runMigration(
 
 );
 
+// =====================================
+// MIGRATION 005
+// ADD USER SECURITY FIELDS
+// =====================================
+
+runMigration(
+
+    5,
+
+    "Add user account status and login tracking",
+
+    (done)=>{
+
+
+        db.all(
+
+            "PRAGMA table_info(users)",
+
+            (err, columns)=>{
+
+
+                if(err){
+
+                    console.log(err);
+                    return;
+
+                }
+
+
+
+                const hasLastLogin = columns.some(
+                    col => col.name === "last_login"
+                );
+
+
+                const hasStatus = columns.some(
+                    col => col.name === "status"
+                );
+
+
+
+                let queries = [];
+
+
+
+                if(!hasLastLogin){
+
+                    queries.push(`
+
+                    ALTER TABLE users
+
+                    ADD COLUMN last_login DATETIME
+
+                    `);
+
+                }
+
+
+
+                if(!hasStatus){
+
+                    queries.push(`
+
+                    ALTER TABLE users
+
+                    ADD COLUMN status TEXT DEFAULT 'active'
+
+                    `);
+
+                }
+
+
+
+                if(queries.length === 0){
+
+                    done();
+                    return;
+
+                }
+
+
+
+                let finished = 0;
+
+
+
+                queries.forEach(query=>{
+
+
+                    db.run(query,(err)=>{
+
+
+                        if(err){
+
+                            console.log(
+                                "USER MIGRATION ERROR:",
+                                err
+                            );
+
+                        }
+
+
+                        finished++;
+
+
+                        if(finished === queries.length){
+
+
+                            console.log(
+                                "User security fields added"
+                            );
+
+
+                            done();
+
+
+                        }
+
+
+                    });
+
+
+                });
+
+
+
+            }
+
+        );
+
+
+    }
+
+);
 
 
 // =====================================
