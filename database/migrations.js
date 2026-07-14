@@ -300,6 +300,128 @@ runMigration(
 
 );
 
+// =====================================
+// MIGRATION 004
+// ADD WALLET TIMESTAMPS
+// =====================================
+
+runMigration(
+
+    4,
+
+    "Add wallet timestamps",
+
+    (done)=>{
+
+
+        db.all(
+
+            "PRAGMA table_info(wallets)",
+
+            (err,columns)=>{
+
+
+                if(err){
+
+                    console.log(err);
+                    return;
+
+                }
+
+
+                const hasCreated = columns.some(
+                    col => col.name === "created_at"
+                );
+
+
+                const hasUpdated = columns.some(
+                    col => col.name === "updated_at"
+                );
+
+
+
+                let queries = [];
+
+
+
+                if(!hasCreated){
+
+                    queries.push(`
+
+                    ALTER TABLE wallets
+
+                    ADD COLUMN created_at DATETIME
+                    DEFAULT CURRENT_TIMESTAMP
+
+                    `);
+
+                }
+
+
+
+                if(!hasUpdated){
+
+                    queries.push(`
+
+                    ALTER TABLE wallets
+
+                    ADD COLUMN updated_at DATETIME
+                    DEFAULT CURRENT_TIMESTAMP
+
+                    `);
+
+                }
+
+
+
+                if(queries.length === 0){
+
+                    done();
+                    return;
+
+                }
+
+
+
+                let finished = 0;
+
+
+
+                queries.forEach(query=>{
+
+
+                    db.run(query,()=>{
+
+
+                        finished++;
+
+
+                        if(finished === queries.length){
+
+                            console.log(
+                                "Wallet timestamps added"
+                            );
+
+                            done();
+
+                        }
+
+
+                    });
+
+
+                });
+
+
+
+            }
+
+        );
+
+
+    }
+
+);
 
 
 
