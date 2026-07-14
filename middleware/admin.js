@@ -1,9 +1,5 @@
 function admin(req, res, next) {
 
-    console.log("ADMIN DEBUG SESSION:");
-console.log("SESSION ID:", req.sessionID);
-console.log("USER:", req.session.user);
-console.log("ROLE:", req.session.user?.role);
 
 
     if (!req.session.user) {
