@@ -134,6 +134,74 @@ runMigration(
 
 );
 
+// =====================================
+// MIGRATION 002
+// ADD TRANSACTION STATUS
+// =====================================
+
+runMigration(
+
+2,
+
+"Add transaction status column",
+
+(done)=>{
+
+
+    db.all(
+
+        "PRAGMA table_info(transactions)",
+
+        (err,columns)=>{
+
+
+            const exists = columns.some(
+
+                col => col.name === "status"
+
+            );
+
+
+            if(!exists){
+
+
+                db.run(`
+
+                ALTER TABLE transactions
+
+                ADD COLUMN status TEXT DEFAULT 'completed'
+
+                `,
+
+                ()=>{
+
+                    console.log(
+                        "Added transactions.status"
+                    );
+
+                    done();
+
+                });
+
+
+            }else{
+
+
+                done();
+
+
+            }
+
+
+        }
+
+    );
+
+
+}
+
+);
+
 
 
 
