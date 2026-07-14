@@ -558,6 +558,138 @@ runMigration(
 
 );
 
+// =====================================
+// MIGRATION 006
+// ADD ADMIN AUDIT DETAILS
+// =====================================
+
+runMigration(
+
+    6,
+
+    "Add admin audit details",
+
+    (done)=>{
+
+
+        db.all(
+
+            "PRAGMA table_info(admin_logs)",
+
+            (err, columns)=>{
+
+
+                if(err){
+
+                    console.log(err);
+                    return;
+
+                }
+
+
+
+                const hasIp = columns.some(
+                    col => col.name === "ip_address"
+                );
+
+
+                const hasAgent = columns.some(
+                    col => col.name === "user_agent"
+                );
+
+
+
+                let queries = [];
+
+
+
+                if(!hasIp){
+
+                    queries.push(`
+
+                    ALTER TABLE admin_logs
+
+                    ADD COLUMN ip_address TEXT
+
+                    `);
+
+                }
+
+
+
+                if(!hasAgent){
+
+                    queries.push(`
+
+                    ALTER TABLE admin_logs
+
+                    ADD COLUMN user_agent TEXT
+
+                    `);
+
+                }
+
+
+
+                if(queries.length === 0){
+
+                    done();
+                    return;
+
+                }
+
+
+
+                let finished = 0;
+
+
+
+                queries.forEach(query=>{
+
+
+                    db.run(query,(err)=>{
+
+
+                        if(err){
+
+                            console.log(
+                                "ADMIN LOG MIGRATION ERROR:",
+                                err
+                            );
+
+                        }
+
+
+                        finished++;
+
+
+                        if(finished === queries.length){
+
+                            console.log(
+                                "Admin audit fields added"
+                            );
+
+                            done();
+
+                        }
+
+
+                    });
+
+
+                });
+
+
+
+            }
+
+        );
+
+
+    }
+
+);
+
 
 // =====================================
 // EXPORT
