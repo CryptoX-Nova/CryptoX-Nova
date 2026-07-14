@@ -109,6 +109,7 @@ function runMigration(version, name, callback){
 
 
 
+
 // =====================================
 // MIGRATION 001
 // =====================================
@@ -199,6 +200,103 @@ runMigration(
 
 
 }
+
+);
+
+// =====================================
+// MIGRATION 003
+// ADD DATABASE PERFORMANCE INDEXES
+// =====================================
+
+runMigration(
+
+    3,
+
+    "Add database performance indexes",
+
+    (done)=>{
+
+
+        const indexes = [
+
+            `
+            CREATE INDEX IF NOT EXISTS idx_wallets_user
+            ON wallets(user_id)
+            `,
+
+
+            `
+            CREATE INDEX IF NOT EXISTS idx_transactions_user
+            ON transactions(user_id)
+            `,
+
+
+            `
+            CREATE INDEX IF NOT EXISTS idx_deposits_user
+            ON deposits(user_id)
+            `,
+
+
+            `
+            CREATE INDEX IF NOT EXISTS idx_withdrawals_user
+            ON withdrawals(user_id)
+            `,
+
+
+            `
+            CREATE INDEX IF NOT EXISTS idx_trades_user
+            ON trades(user_id)
+            `
+
+        ];
+
+
+
+        let completed = 0;
+
+
+
+        indexes.forEach((query)=>{
+
+
+            db.run(query, (err)=>{
+
+
+                if(err){
+
+                    console.log(
+                        "INDEX ERROR:",
+                        err
+                    );
+
+                }
+
+
+                completed++;
+
+
+                if(completed === indexes.length){
+
+
+                    console.log(
+                        "Database indexes created"
+                    );
+
+
+                    done();
+
+
+                }
+
+
+            });
+
+
+        });
+
+
+
+    }
 
 );
 
