@@ -690,6 +690,139 @@ runMigration(
 
 );
 
+// =====================================
+// MIGRATION 007
+// ADD TRANSACTION REFERENCE SYSTEM
+// =====================================
+
+runMigration(
+
+    7,
+
+    "Add transaction reference system",
+
+    (done)=>{
+
+
+        db.all(
+
+            "PRAGMA table_info(transactions)",
+
+            (err, columns)=>{
+
+
+                if(err){
+
+                    console.log(err);
+                    return;
+
+                }
+
+
+
+                const hasReference = columns.some(
+                    col => col.name === "reference_id"
+                );
+
+
+                const hasNotes = columns.some(
+                    col => col.name === "notes"
+                );
+
+
+
+                let queries = [];
+
+
+
+                if(!hasReference){
+
+                    queries.push(`
+
+                    ALTER TABLE transactions
+
+                    ADD COLUMN reference_id TEXT
+
+                    `);
+
+                }
+
+
+
+                if(!hasNotes){
+
+                    queries.push(`
+
+                    ALTER TABLE transactions
+
+                    ADD COLUMN notes TEXT
+
+                    `);
+
+                }
+
+
+
+                if(queries.length === 0){
+
+                    done();
+                    return;
+
+                }
+
+
+
+                let finished = 0;
+
+
+
+                queries.forEach(query=>{
+
+
+                    db.run(query,(err)=>{
+
+
+                        if(err){
+
+                            console.log(
+                                "TRANSACTION MIGRATION ERROR:",
+                                err
+                            );
+
+                        }
+
+
+                        finished++;
+
+
+                        if(finished === queries.length){
+
+
+                            console.log(
+                                "Transaction reference fields added"
+                            );
+
+
+                            done();
+
+                        }
+
+
+                    });
+
+
+                });
+
+
+
+            }
+
+        );
+
+
+    }
+
+);
 
 // =====================================
 // EXPORT
