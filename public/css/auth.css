@@ -1,18 +1,17 @@
-/* =====================================
-   CryptoX Nova Authentication UI
-===================================== */
+/* ======================================
+   CRYPTOX NOVA AUTH DESIGN
+====================================== */
 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
 .auth-body{
 
     min-height:100vh;
-
-    background:
-    radial-gradient(
-        circle at top,
-        #1e3a8a,
-        #0b1220 50%
-    );
 
     display:flex;
 
@@ -20,22 +19,28 @@
 
     align-items:center;
 
-    color:white;
-
 }
-
-
-
-
-
 
 .auth-container{
 
     width:100%;
+    max-width:600px;
 
-    max-width:450px;
+    display:grid;
+    grid-template-columns:1fr;
 
-    padding:20px;
+    background:rgba(255,255,255,.05);
+
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:28px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 25px 60px rgba(0,0,0,.45);
 
 }
 
@@ -44,52 +49,466 @@
 
 
 
-/* BRAND */
-
+/* ===========================
+   LEFT SIDE
+=========================== */
 
 .auth-brand{
 
+    background:rgba(37,99,235,.12);
+
+    border-radius:25px;
+
+    color:white;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 30px;
+
     text-align:center;
 
-    margin-bottom:30px;
+    backdrop-filter:blur(10px);
 
 }
 
+.auth-brand{
 
+    min-height:700px;
 
-
+}
 
 .auth-brand h1{
 
-    font-size:42px;
+    font-size:48px;
+    margin-bottom:20px;
 
-    color:#22c55e;
+    display:inline-block;
 
-    letter-spacing:1px;
+    padding:15px 30px;
+
+    background:rgba(255,255,255,.12);
+
+    border:1px solid rgba(255,255,255,.25);
+
+    border-radius:15px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+.auth-brand p{
+
+    font-size:18px;
+    opacity:.9;
+    line-height:1.7;
+
+    display:inline-block;
+
+    padding:10px 22px;
+
+    background:rgba(255,255,255,.08);
+
+    border-radius:12px;
+
+}
+
+.crypto-icon{
+
+    margin:45px auto 25px;
+
+    width:150px;
+    height:150px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.12);
+    border:2px solid rgba(0,191,255,.4);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:
+        0 0 25px rgba(0,191,255,.35);
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+.crypto-icon i{
+
+    font-size:65px;
+    color:#00bfff;
 
     text-shadow:
+        0 0 15px #00bfff,
+        0 0 35px rgba(0,191,255,.7);
 
-    0 0 25px rgba(34,197,94,.5);
+}
+
+@keyframes float{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+100%{transform:translateY(0);}
 
 }
 
 
 
+
+
+
+
+/* ===========================
+   RIGHT SIDE
+=========================== */
+
+.auth-card{
+
+    background:transparent;
+
+    width:100%;
+    max-width:420px;
+
+    padding:30px 20px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.auth-card h2{
+
+    color:#fff;
+    font-size:34px;
+
+    margin-bottom:10px;
+
+}
+
+.auth-card p{
+
+    color:#9ca3af;
+
+    margin-bottom:35px;
+
+}
+
+
+
+
+
+
+.input-group{
+
+    position:relative;
+
+    margin-bottom:22px;
+
+}
+
+.input-group i{
+
+    position:absolute;
+
+    left:18px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#60a5fa;
+
+    font-size:18px;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    padding:17px 18px 17px 52px;
+
+    background:#1f2937;
+
+    border:1px solid #374151;
+
+    border-radius:14px;
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.input-group input:focus{
+
+    outline:none;
+
+    border-color:#3b82f6;
+
+    box-shadow:
+    0 0 15px rgba(59,130,246,.35);
+
+}
+
+
+
+
+
+
+
+button{
+
+    width:100%;
+
+    margin-top:15px;
+
+    padding:17px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+    90deg,
+    #2563eb,
+    #06b6d4);
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 30px rgba(37,99,235,.4);
+
+}
+
+
+
+
+
+
+.auth-footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+}
+
+.auth-footer p{
+
+    display:inline;
+
+    color:#9ca3af;
+
+}
+
+.auth-footer a{
+
+    color:#3b82f6;
+
+    text-decoration:none;
+
+    font-weight:bold;
+
+    margin-left:6px;
+
+}
+
+.auth-footer a:hover{
+
+    color:#60a5fa;
+
+}
+
+
+
+
+
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:900px){
+
+
+.auth-body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:10px;
+
+}
+
+
+/* MAIN CONTAINER */
+
+.auth-container{
+
+    width:92%;
+
+    max-width:400px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+
+
+/* BRAND AREA */
+
+.auth-brand{
+
+    padding:20px 15px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+
+
+/* TITLE */
+
+.auth-brand h1{
+
+    font-size:30px;
+
+    margin-bottom:5px;
+
+}
 
 
 .auth-brand p{
 
-    color:#94a3b8;
+    font-size:14px;
 
-    margin-top:10px;
+    margin-bottom:15px;
 
 }
 
 
 
+/* LOGIN REGISTER FORM */
+
+.auth-card{
+
+    width:100%;
+
+    max-width:330px;
+
+    padding:0;
+
+    background:transparent;
+
+    text-align:center;
+
+}
 
 
 
+.auth-card h2{
+
+    font-size:25px;
+
+    margin-bottom:5px;
+
+}
+
+
+.auth-card p{
+
+    font-size:13px;
+
+    margin-bottom:18px;
+
+}
+
+
+
+/* INPUT */
+
+.input-group{
+
+    margin-bottom:15px;
+
+}
+
+
+.input-group input{
+
+    padding:14px 15px 14px 45px;
+
+    font-size:14px;
+
+}
+
+
+
+/* BUTTON */
+
+button{
+
+    padding:14px;
+
+    font-size:15px;
+
+}
+
+
+
+/* FOOTER */
+
+.auth-footer{
+
+    margin-top:15px;
+
+    font-size:13px;
+
+}
+
+
+
+/* LOGO SA BABA */
 
 .crypto-icon{
 
@@ -97,392 +516,119 @@
 
     height:70px;
 
-    margin:25px auto 0;
-
-    border-radius:50%;
-
-    background:#1e293b;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:32px;
-
-    color:#22c55e;
-
-    box-shadow:
-
-    0 0 30px rgba(34,197,94,.25);
+    margin:20px auto 0;
 
 }
 
 
 
+.crypto-icon i{
 
-
-
-
-
-
-/* LOGIN CARD */
-
-
-.auth-card{
-
-    background:
-
-    rgba(17,24,39,.85);
-
-
-    backdrop-filter:blur(15px);
-
-
-    padding:35px;
-
-
-    border-radius:25px;
-
-
-    border:1px solid rgba(255,255,255,.08);
-
-
-    box-shadow:
-
-    0 20px 50px rgba(0,0,0,.5);
-
+    font-size:35px;
 
 }
 
 
 
+/* ITAGO MUNA ANG FLOATING COINS */
 
+.floating-coins{
 
-.auth-card h2{
-
-    text-align:center;
-
-    font-size:30px;
-
-    margin-bottom:10px;
-
-}
-
-
-
-
-
-.auth-card>p{
-
-    text-align:center;
-
-    color:#94a3b8;
-
-    margin-bottom:30px;
-
-}
-
-
-
-
-
-
-
-
-
-/* INPUT */
-
-
-.input-group{
-
-
-display:flex;
-
-
-align-items:center;
-
-
-gap:12px;
-
-
-background:#0f172a;
-
-
-border:1px solid #334155;
-
-
-padding:15px;
-
-
-border-radius:14px;
-
-
-margin-bottom:18px;
-
-
-}
-
-
-
-
-.input-group i{
-
-    color:#22c55e;
-
-}
-
-
-
-
-.input-group input{
-
-
-width:100%;
-
-background:none;
-
-border:none;
-
-outline:none;
-
-color:white;
-
-font-size:16px;
-
-
-}
-
-
-
-
-
-
-
-
-/* BUTTON */
-
-
-.auth-card button{
-
-
-width:100%;
-
-
-padding:16px;
-
-
-border:none;
-
-
-border-radius:15px;
-
-
-background:#22c55e;
-
-
-color:white;
-
-
-font-size:18px;
-
-
-font-weight:bold;
-
-
-cursor:pointer;
-
-
-transition:.3s;
-
-
-}
-
-
-
-
-
-.auth-card button:hover{
-
-
-transform:translateY(-3px);
-
-
-box-shadow:
-
-0 10px 25px rgba(34,197,94,.35);
-
-
-}
-
-
-
-
-
-
-
-/* FOOTER */
-
-
-.auth-footer{
-
-
-text-align:center;
-
-
-margin-top:25px;
-
-
-color:#94a3b8;
-
-
-}
-
-
-
-
-.auth-footer a{
-
-
-color:#22c55e;
-
-
-text-decoration:none;
-
-
-font-weight:bold;
-
-
-}
-
-
-
-
-
-
-
-
-/* MOBILE */
-
-
-@media(max-width:600px){
-
-
-.auth-brand h1{
-
-font-size:34px;
-
-}
-
-
-.auth-card{
-
-padding:25px;
+    display:none;
 
 }
 
 
 }
 
-/* =====================================
-   Login Premium Size Upgrade
-===================================== */
+/* ===============================
+   FLOATING CRYPTO ICONS
+================================ */
 
+.floating-coins{
 
-.auth-container{
+    width:220px;
 
-    max-width:520px;
+    height:120px;
 
-}
-
-
-
-
-.auth-card{
-
-    padding:45px;
-
-    border-radius:30px;
+    margin-top:15px;
 
 }
 
+.floating-coins i{
 
+    position:absolute;
 
+    color:#3b82f6;
 
+    opacity:.9;
 
-.auth-card h2{
+    animation:floatCoin 6s ease-in-out infinite;
 
-    font-size:36px;
-
-}
-
-
-
-
-
-.auth-card>p{
-
-    font-size:16px;
+    filter:drop-shadow(0 0 18px rgba(59,130,246,.45));
 
 }
 
+.btc{
 
-
-
-
-.input-group{
-
-    padding:18px;
-
-    border-radius:16px;
-
-    height:60px;
+    top:0;
+    left:15px;
+    font-size:70px;
 
 }
 
+.eth{
 
-
-.input-group input{
-
-    font-size:18px;
-
-}
-
-
-
-
-
-.auth-card button{
-
-    height:65px;
-
-    font-size:20px;
-
-    border-radius:18px;
+    top:30px;
+    right:15px;
+    font-size:65px;
 
 }
 
+.sol{
 
-
-
-
-.auth-brand h1{
-
-    font-size:52px;
+    bottom:0;
+    left:120px;
+    font-size:72px;
 
 }
 
+.btc2{
 
-
-
-
-.crypto-icon{
-
-    width:90px;
-
-    height:90px;
-
+    bottom:30px;
+    right:55px;
     font-size:40px;
+    opacity:.35;
+
+}
+
+.eth2{
+
+    top:90px;
+    left:140px;
+    font-size:38px;
+    opacity:.35;
+
+}
+
+@keyframes floatCoin{
+
+    0%{
+
+        transform:translateY(0px) rotate(0deg);
+
+    }
+
+    50%{
+
+        transform:translateY(-18px) rotate(6deg);
+
+    }
+
+    100%{
+
+        transform:translateY(0px) rotate(0deg);
+
+    }
 
 }

@@ -62,29 +62,13 @@ CREATE TABLE IF NOT EXISTS wallets (
 )
 `);
 
-// =====================================
-// MARKET
-// =====================================
-
-db.run(`
-CREATE TABLE IF NOT EXISTS market (
-
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-
-    coin TEXT,
-
-    symbol TEXT,
-
-    price REAL
-
-)
-`);
 
 // =====================================
 // TRANSACTIONS
 // =====================================
 
 db.run(`
+
 CREATE TABLE IF NOT EXISTS transactions (
 
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -232,5 +216,71 @@ db.all(
 
 }
 );
+
+
+// =====================================
+// MARKET TABLE
+// =====================================
+
+db.run(`
+
+CREATE TABLE IF NOT EXISTS market (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    coin TEXT UNIQUE,
+
+    price REAL
+
+)
+
+`);
+
+
+// =====================================
+// DEFAULT MARKET PRICE
+// =====================================
+
+db.run(`
+
+INSERT OR IGNORE INTO market
+(coin, price)
+
+VALUES
+
+('BTC',65000),
+('ETH',3500),
+('SOL',150)
+
+`);
+
+// =====================================
+// ADMIN LOGS
+// =====================================
+
+db.run(`
+
+CREATE TABLE IF NOT EXISTS admin_logs (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    admin_id INTEGER,
+
+    action TEXT,
+
+    target_user INTEGER,
+
+    description TEXT,
+
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+
+)
+
+`);
+
+
+// =====================================
+// EXPORT DATABASE
+// =====================================
 
 module.exports = db;

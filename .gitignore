@@ -1,2 +1,7 @@
 node_modules/
-cryptox.db
+
+*.db
+*.db-shm
+*.db-wal
+
+cryptox.sqbpro

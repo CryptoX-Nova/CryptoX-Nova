@@ -122,66 +122,11 @@ router.post("/login", (req, res) => {
 
             }
 
-           // CREATE SESSION DATA
-
-req.session.user = {
-
-    id: user.id,
-
-    username: user.username,
-
-    role: user.role
-
-};
-
-
-// SAVE SESSION TO DATABASE
-
-db.run(
-
-`
-INSERT OR REPLACE INTO user_sessions
-
-(session_id,user_id,username,role,expires)
-
-VALUES (?,?,?,?,datetime('now','+1 day'))
-
-`,
-
-[
-
-req.sessionID,
-
-user.id,
-
-user.username,
-
-user.role
-
-],
-
-
-(err)=>{
-
-    if(err){
-
-        console.log(
-            "SESSION DATABASE ERROR:",
-            err
-        );
-
-    }else{
-
-        console.log(
-            "SESSION SAVED TO DATABASE"
-        );
-
-    }
-
-}
-
-
-);
+            req.session.user = {
+                id: user.id,
+                username: user.username,
+                role: user.role
+            };
 
             console.log("SESSION CREATED:");
             console.log(req.session);

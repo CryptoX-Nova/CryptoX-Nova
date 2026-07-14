@@ -4,7 +4,7 @@ const router = express.Router();
 
 const db = require("../database/database");
 const admin = require("../middleware/admin");
-
+const adminLog = require("../middleware/adminLog");
 
 // ===============================
 // GET ALL USERS
@@ -173,15 +173,21 @@ message:"Deposit history error"
 
 
 
+adminLog(
+    req,
+    "ADD BALANCE",
+    user_id,
+    `Added ${amount} ${coin} balance`
+);
+
+
 res.json({
 
 success:true,
 
 message:"Deposit successful"
 
-
 });
-
 
 
 }
@@ -648,6 +654,18 @@ WHERE id=?
 
 );
 
+adminLog(
+
+req.session.user.id,
+
+"APPROVE_DEPOSIT",
+
+deposit.user_id,
+
+`Approved ${deposit.amount} ${deposit.coin} deposit`
+
+);
+
 
 
 res.json({
@@ -1014,7 +1032,171 @@ withdrawals:rows
 
 });
 
+// =====================================
+// UPDATE MARKET PRICE
+// =====================================
+
+router.post("/market/update", admin, (req,res)=>{
 
 
+    const { coin, price } = req.body;
+
+
+    if(!coin || !price){
+
+        return res.json({
+
+            success:false,
+
+            message:"Missing fields"
+
+        });
+
+    }
+
+
+
+    db.run(
+
+        `
+        UPDATE market
+
+        SET price=?
+
+        WHERE coin=?
+
+        `,
+
+        [
+
+            Number(price),
+
+            coin.toUpperCase()
+
+        ],
+
+
+        function(err){
+
+
+            if(err){
+
+                console.log(err);
+
+                return res.json({
+
+                    success:false,
+
+                    message:"Database error"
+
+                });
+
+            }
+
+
+
+            if(this.changes === 0){
+
+                return res.json({
+
+                    success:false,
+
+                    message:"Coin not found"
+
+                });
+
+            }
+
+
+
+            res.json({
+
+                success:true,
+
+                message:
+                coin.toUpperCase()+" price updated"
+
+            });
+
+
+
+        }
+
+
+    );
+
+
+});
+
+// =====================================
+// ADMIN ACTIVITY LOGS
+// =====================================
+
+router.get("/logs", admin, (req,res)=>{
+
+
+db.all(
+
+`
+SELECT
+
+admin_logs.id,
+
+admin_logs.action,
+
+users.username,
+
+admin_logs.description,
+
+admin_logs.created_at
+
+
+FROM admin_logs
+
+
+LEFT JOIN users
+
+ON admin_logs.target_user = users.id
+
+
+ORDER BY admin_logs.id DESC
+
+
+LIMIT 50
+
+`,
+
+[],
+
+
+(err,rows)=>{
+
+
+if(err){
+
+return res.json({
+
+success:false,
+
+message:"Database error"
+
+});
+
+}
+
+
+res.json({
+
+success:true,
+
+logs:rows
+
+});
+
+
+});
+
+
+});
 
 module.exports = router;

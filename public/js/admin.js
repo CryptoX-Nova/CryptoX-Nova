@@ -12,14 +12,23 @@ async function loadStats(){
 
         const data = await response.json();
 
+        console.log("STATS RESPONSE:", data);
+
         if(!data.success){
             return;
         }
 
         const totalUsers = document.getElementById("totalUsers");
-        const totalDeposits = document.getElementById("totalDeposits");
-        const platformBalance = document.getElementById("platformBalance");
-        const totalTrades = document.getElementById("totalTrades");
+const totalDeposits = document.getElementById("totalDeposits");
+const platformBalance = document.getElementById("platformBalance");
+const totalTrades = document.getElementById("totalTrades");
+
+
+// HERO STATS
+
+const heroUsers = document.getElementById("heroUsers");
+const heroTrades = document.getElementById("heroTrades");
+const heroBalance = document.getElementById("heroBalance");
 
         if(totalUsers){
             totalUsers.textContent = data.totalUsers;
@@ -38,6 +47,29 @@ async function loadStats(){
         if(totalTrades){
             totalTrades.textContent = data.totalTrades;
         }
+
+        // UPDATE HERO CARDS
+
+if(heroUsers){
+
+    heroUsers.textContent = data.totalUsers;
+
+}
+
+
+if(heroTrades){
+
+    heroTrades.textContent = data.totalTrades;
+
+}
+
+
+if(heroBalance){
+
+    heroBalance.textContent =
+    "$" + Number(data.platformBalance).toLocaleString();
+
+}
 
     }catch(err){
 
@@ -62,6 +94,8 @@ async function loadUsers() {
         });
 
         const data = await response.json();
+
+        console.log("REAL USERS RESPONSE:", data);
 
         if (!data.success) return;
 
@@ -217,6 +251,8 @@ async function loadDeposits() {
                 <td>${item.coin}</td>
 
                 <td>${Number(item.amount).toLocaleString()}</td>
+
+                <td>${item.status}</td>
 
                 <td>${item.created_at}</td>
 
@@ -933,6 +969,87 @@ loadStats();
 window.approveWithdraw = approveWithdraw;
 window.rejectWithdraw = rejectWithdraw;
 
+// =====================================
+// LOAD ADMIN LOGS
+// =====================================
+
+async function loadAdminLogs(){
+
+    try{
+
+        const response = await fetch(
+            "/api/admin/logs",
+            {
+                credentials:"include"
+            }
+        );
+
+        const data = await response.json();
+
+        console.log("ADMIN LOGS RESPONSE:", data);
+
+
+        const table = document.getElementById("adminLogsTable");
+
+
+        if(!table) return;
+
+
+        table.innerHTML = "";
+
+
+        if(!data.success || data.logs.length === 0){
+
+            table.innerHTML = `
+
+            <tr>
+                <td colspan="5">
+                    No activity yet
+                </td>
+            </tr>
+
+            `;
+
+            return;
+
+        }
+
+
+        data.logs.forEach(log=>{
+
+            table.innerHTML += `
+
+            <tr>
+
+                <td>${log.id}</td>
+
+                <td>${log.action}</td>
+
+                <td>${log.username || "N/A"}</td>
+
+                <td>${log.description}</td>
+
+                <td>${log.created_at}</td>
+
+            </tr>
+
+            `;
+
+        });
+
+
+    }catch(err){
+
+        console.log(
+            "ADMIN LOG ERROR:",
+            err
+        );
+
+    }
+
+}
+
+
 window.onload = () => {
 
     console.log("ADMIN JS START");
@@ -951,5 +1068,8 @@ window.onload = () => {
 
     console.log("loading withdrawals");
     loadWithdrawals();
+
+    console.log("loading admin logs");
+    loadAdminLogs();
 
 };
